@@ -18,7 +18,6 @@ const answerSchema = mongoose.Schema(
     },
     selectedAnswer: {
       type: Boolean,
-      required: true,
       default: false,
     },
     comments: [
