@@ -31,6 +31,13 @@ const questionSchema = mongoose.Schema(
         },
       },
     ],
+    tags: [
+      {
+        tag: {
+          type: String,
+        },
+      },
+    ],
   },
   {
     timestamps: true,
