@@ -6,10 +6,12 @@ import {
   searchQuestion,
   addTags,
   listQuestionsHavingTags,
+  getAllQuestions,
 } from "../controllers/questionController.js";
 
 const router = express.Router();
 
+router.get("/", getAllQuestions);
 router.get("/search", searchQuestion);
 router.get("/unanswered", unansweredQuestions);
 router.get("/tags", listQuestionsHavingTags);

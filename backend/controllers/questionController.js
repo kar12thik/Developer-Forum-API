@@ -41,7 +41,16 @@ const createQuestion = asyncHandler(async (req, res) => {
 const unansweredQuestions = asyncHandler(async (req, res) => {
   const questions = await Question.find({ hasAnswers: false })
     .populate("owner", "name email -_id")
-    .select("title description -_id");
+    .select("title description");
+
+  res.json(questions);
+});
+
+// @desc Lists all  Questions
+// @route GET /api/questions/
+// @access Public
+const getAllQuestions = asyncHandler(async (req, res) => {
+  const questions = await Question.find({}).populate("owner");
 
   res.json(questions);
 });
@@ -167,4 +176,5 @@ export {
   searchQuestion,
   addTags,
   listQuestionsHavingTags,
+  getAllQuestions,
 };

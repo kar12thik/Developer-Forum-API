@@ -109,4 +109,39 @@ const selectAnswer = asyncHandler(async (req, res) => {
   }
 });
 
-export { answerQuestion, answerComments, selectAnswer };
+// @desc Lists all  Answers
+// @route GET /api/answers/
+// @access Public
+const getAllAnswers = asyncHandler(async (req, res) => {
+  const answers = await Answer.find({}).populate("owner toQuestion");
+
+  res.json(answers);
+});
+
+// @desc Lists all  Answers for a Question
+// @route GET /api/answers/:questionId
+// @access Public
+const getAllAnswersToQuestion = asyncHandler(async (req, res) => {
+  if (!req.params.questionId) {
+    res.status(400);
+    throw new Error("Please provide Question Id");
+  }
+
+  const answers = await Answer.find({
+    toQuestion: req.params.questionId,
+  }).populate("owner toQuestion");
+  if (answers) {
+    res.json(answers);
+  } else {
+    res.status(404);
+    throw new Error("Question not found");
+  }
+});
+
+export {
+  answerQuestion,
+  answerComments,
+  selectAnswer,
+  getAllAnswersToQuestion,
+  getAllAnswers,
+};
