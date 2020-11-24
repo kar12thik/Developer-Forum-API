@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon backend/index.js"
+    "start": "node backend/index.js",
+    "start-dev": "nodemon backend/index.js"
   },
   "author": "Karthikeyan Subramanian",
   "license": "ISC",
